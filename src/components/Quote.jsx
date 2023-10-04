@@ -3,7 +3,7 @@ import { FaQuoteLeft } from 'react-icons/fa';
 
 import Card from './Card';
 
-import classes from './Quote.module.css';
+import classes from './Quote.module.scss';
 import Footer from './Footer';
 
 const Quote = () => {
@@ -39,15 +39,11 @@ const Quote = () => {
 			style={{ backgroundColor: randomColor }}
 		>
 			<Card>
-				<h1 id='text' className={classes.text} style={{ color: randomColor }}>
+				<h1 id='text' style={{ color: randomColor }}>
 					<FaQuoteLeft size='30' style={{ marginRight: '12px' }} />
 					{quotesData ? quotesData[quoteIndex].quote : 'Loading'}
 				</h1>
-				<p
-					id='author'
-					className={classes.author}
-					style={{ color: randomColor }}
-				>
+				<p id='author' style={{ color: randomColor }}>
 					- {quotesData ? quotesData[quoteIndex].author : ''}
 				</p>
 				<div className={classes.buttons}>
