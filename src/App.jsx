@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Quote from './components/Quote';
+import Footer from './components/Footer';
 
 const App = () => {
-	return <div>App</div>;
+	return (
+		<Fragment>
+			<Quote />
+			<Footer />
+		</Fragment>
+	);
 };
 
 export default App;

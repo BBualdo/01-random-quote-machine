@@ -1,0 +1,53 @@
+.text {
+	color: black;
+	font-size: 28px;
+	font-weight: 500;
+	text-align: center;
+}
+
+.author {
+	color: black;
+	padding-top: 20px;
+	text-align: right;
+}
+
+.buttons {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 30px;
+}
+
+.share__buttons {
+	align-items: center;
+	display: flex;
+	gap: 4px;
+}
+
+.share__buttons a {
+	background-color: black;
+	border: none;
+	height: 40px;
+	width: 40px;
+}
+
+.twitter {
+	background-image: url('../assets/twitter.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60%;
+}
+
+.tumblr {
+	background-image: url('../assets/tumblr.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 64%;
+}
+
+.new-quote__button {
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+	padding: 8px 18px;
+}
