@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaQuoteLeft } from 'react-icons/fa';
 
 import Card from './Card';
@@ -6,6 +6,23 @@ import Card from './Card';
 import classes from './Quote.module.css';
 
 const Quote = () => {
+	const randomNumber = Math.floor(Math.random() * 102);
+
+	const [quotesData, setQuotesData] = useState(null);
+	const [quoteIndex, setQuoteIndex] = useState(randomNumber);
+
+	useEffect(() => {
+		fetch(
+			'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json',
+		)
+			.then((res) => res.json())
+			.then((data) => setQuotesData(data.quotes));
+	}, []);
+
+	const newQuote = () => {
+		setQuoteIndex(randomNumber);
+	};
+
 	return (
 		<Card>
 			<h1 id='text' className={classes.text}>
@@ -13,13 +30,10 @@ const Quote = () => {
 					size='30'
 					style={{ color: 'black', marginRight: '12px' }}
 				/>
-				When I was 5 years old, my mother always told me that happiness was the
-				key to life. When I went to school, they asked me what I wanted to be
-				when I grew up. I wrote down ‘happy’. They told me I didn’t understand
-				the assignment, and I told them they didn’t understand life.
+				{quotesData ? quotesData[quoteIndex].quote : 'Loading'}
 			</h1>
 			<p id='author' className={classes.author}>
-				- John Lennon
+				- {quotesData ? quotesData[quoteIndex].author : ''}
 			</p>
 			<div className={classes.buttons}>
 				<div className={classes['share__buttons']}>
@@ -35,7 +49,11 @@ const Quote = () => {
 					></a>
 				</div>
 				<div>
-					<button id='new-quote' className={classes['new-quote__button']}>
+					<button
+						onClick={newQuote}
+						id='new-quote'
+						className={classes['new-quote__button']}
+					>
 						New quote
 					</button>
 				</div>
