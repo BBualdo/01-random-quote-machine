@@ -1,3 +1,11 @@
+.background {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	justify-content: center;
+}
+
 .text {
 	color: black;
 	font-size: 28px;
@@ -25,10 +33,14 @@
 }
 
 .share__buttons a {
-	background-color: black;
 	border: none;
 	height: 40px;
+	transition: all 0.2s ease-out;
 	width: 40px;
+}
+
+.share__buttons a:hover {
+	opacity: 0.8;
 }
 
 .twitter {
@@ -48,6 +60,12 @@
 .new-quote__button {
 	border-radius: 3px;
 	border: none;
+	color: white;
 	cursor: pointer;
 	padding: 8px 18px;
+	transition: all 0.2s ease-out;
+}
+
+.new-quote__button:hover {
+	opacity: 0.8;
 }

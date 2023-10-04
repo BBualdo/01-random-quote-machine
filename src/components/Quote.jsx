@@ -4,12 +4,21 @@ import { FaQuoteLeft } from 'react-icons/fa';
 import Card from './Card';
 
 import classes from './Quote.module.css';
+import Footer from './Footer';
 
 const Quote = () => {
 	const randomNumber = Math.floor(Math.random() * 102);
+	const getRandomColor = () => {
+		const red = Math.floor(Math.random() * 158);
+		const green = Math.floor(Math.random() * 158);
+		const blue = Math.floor(Math.random() * 158);
+
+		return `rgb(${red}, ${green}, ${blue})`;
+	};
 
 	const [quotesData, setQuotesData] = useState(null);
 	const [quoteIndex, setQuoteIndex] = useState(randomNumber);
+	const [randomColor, setRandomColor] = useState(getRandomColor());
 
 	useEffect(() => {
 		fetch(
@@ -21,44 +30,55 @@ const Quote = () => {
 
 	const newQuote = () => {
 		setQuoteIndex(randomNumber);
+		setRandomColor(getRandomColor);
 	};
 
 	return (
-		<Card>
-			<h1 id='text' className={classes.text}>
-				<FaQuoteLeft
-					size='30'
-					style={{ color: 'black', marginRight: '12px' }}
-				/>
-				{quotesData ? quotesData[quoteIndex].quote : 'Loading'}
-			</h1>
-			<p id='author' className={classes.author}>
-				- {quotesData ? quotesData[quoteIndex].author : ''}
-			</p>
-			<div className={classes.buttons}>
-				<div className={classes['share__buttons']}>
-					<a
-						className={classes.twitter}
-						id='tweet-quote'
-						href='https://www.twitter.com/intent/tweet'
-					></a>
-					<a
-						className={classes.tumblr}
-						id='tumblr-quote'
-						href='https://www.tumblr.com/share'
-					></a>
+		<div
+			className={classes.background}
+			style={{ backgroundColor: randomColor }}
+		>
+			<Card>
+				<h1 id='text' className={classes.text} style={{ color: randomColor }}>
+					<FaQuoteLeft size='30' style={{ marginRight: '12px' }} />
+					{quotesData ? quotesData[quoteIndex].quote : 'Loading'}
+				</h1>
+				<p
+					id='author'
+					className={classes.author}
+					style={{ color: randomColor }}
+				>
+					- {quotesData ? quotesData[quoteIndex].author : ''}
+				</p>
+				<div className={classes.buttons}>
+					<div className={classes['share__buttons']}>
+						<a
+							className={classes.twitter}
+							id='tweet-quote'
+							href='https://www.twitter.com/intent/tweet'
+							style={{ backgroundColor: randomColor }}
+						></a>
+						<a
+							className={classes.tumblr}
+							id='tumblr-quote'
+							href='https://www.tumblr.com/share'
+							style={{ backgroundColor: randomColor }}
+						></a>
+					</div>
+					<div>
+						<button
+							onClick={newQuote}
+							id='new-quote'
+							className={classes['new-quote__button']}
+							style={{ backgroundColor: randomColor }}
+						>
+							New quote
+						</button>
+					</div>
 				</div>
-				<div>
-					<button
-						onClick={newQuote}
-						id='new-quote'
-						className={classes['new-quote__button']}
-					>
-						New quote
-					</button>
-				</div>
-			</div>
-		</Card>
+			</Card>
+			<Footer />
+		</div>
 	);
 };
 
